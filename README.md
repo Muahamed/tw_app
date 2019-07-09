@@ -11,12 +11,7 @@ sub-second response times and continuity through single-server failures.
 
   
 Design and create the environments, and provide a plan to 
-scale out that deployment when the application goes public. You should use a 
-virtualization solution such as VirtualBox for these environments. We do not want 
-you to deliver the VMs to us. Instead you should provide scripts/documentation to 
-enable us to build the environments ourselves very easily. We will use VirtualBox, 
-VMWare or EC2 (your choice) to build your environments. 
-
+scale out that deployment when the application goes public.
 
 
 ### Assumptions
