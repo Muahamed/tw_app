@@ -20,7 +20,7 @@ services:
     - 8080
     networks:
     - net
-    hostname: app
+    hostname: web
     volumes:
       - ../data:/user/data/persistence
 
