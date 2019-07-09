@@ -243,13 +243,10 @@ tomcat                  8.5.38-jre8         02eaee4dc65c        3 months ago    
 ````
 
 * When constructing a container based infrastructure it is important to be mindful of image 
-size. I believe that larger containers include more technical debt. Alpine Linux is billed 
-as a security-oriented, lightweight Linux distribution. By itself it clock in at 4.79 MB
-If we can construct all out containers based on the same underpinnings then we will have a 
-cleaner and consistent environment.
+size. I believe that larger containers include more technical debt. Alpine Linux + nginx is billed 
+as a security-oriented, lightweight Linux distribution. If we can construct all out containers based on the same underpinnings then we will have a cleaner and consistent environment.
 
-* jetty requires a jdk as servlets are just in time compiled. The base implementation of alpine 
-does not include java. I add the Oracle jdk version of java 8 to avoid any missing components.
+
 
  
 ### Run muzzu_uating
@@ -328,9 +325,8 @@ curl: (7) Failed to connect to localhost port 80: Connection refused
 ````
 
 ### Benchmarking the muzzu_uating environment
-As I am a curious guy and I want to know how well this infrastructure stands up. 
-I use Apache Bench to do some simple benchmarking. The muzzu_master.sh bench command 
-runs ab apache bench, 1000 HTTP requests, 10 at a time.  
+if you have installed Apache Bench to do some simple benchmarking. The muzzu_master.sh bench command 
+runs ab apache bench, 1000 HTTP requests, 10 at a time to check how well our infrastructure standsup.
   
  `$ ab -n 1000 -c 10 http://localhost/`  
   
