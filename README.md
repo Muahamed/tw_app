@@ -186,13 +186,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  app:
+  web:
     build: tomcat/
     ports:
     - 8080
     networks:
     - net
-    hostname: app
+    hostname: web
     volumes:
       - ../data:/user/data/persistence
 
