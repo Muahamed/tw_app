@@ -13,6 +13,7 @@ services:
     container_name: static
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/letsencrypt/:/etc/letsencrypt/
 
   web1:
     build: tomcat/
@@ -25,7 +26,7 @@ services:
       - ../data:/user/data/persistence
       
       
-  web1:
+  web2:
     build: tomcat/
     ports:
     - 8080
