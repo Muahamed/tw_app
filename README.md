@@ -99,7 +99,38 @@ Checking connectivity... done.
 
 ### Installing preqs 
 
+
+
+
+###Create Certbot SSL Certificates
+
+The Install
+1. Install Python:
+$ yum install python27-devel git
+2. Install Let’s Encrypt by cloning the github repository into /opt/letsencrypt and running the Let’s Encrypt installer:
+$ git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt$ /opt/letsencrypt/letsencrypt-auto --debug
+2a. If you’re running Amazon Linux 2 on your EC2 follow these additional steps (thanks @andrenakkurt!) before continuing.
+3. Make a configuration file (/etc/letsencrypt/config.ini) that will be used to sign all future certificates and renewals with your private key and email address:
+$ echo "rsa-key-size = 4096" >> /etc/letsencrypt/config.ini$ echo "email = ________@____.com" >> /etc/letsencrypt/config.ini
+Certificate Generation
+1. Request a certificate the naked domain (_______.com) and www subdomain (www._______.com), using a “secret file” generated in a directory (.well-known) in your website’s root folder (/var/www/_______)
+$ /opt/letsencrypt/letsencrypt-auto certonly --debug --webroot -w /var/www/_______ -d _______.com -d www._______.com --config /etc/letsencrypt/config.ini --agree-tos 
+Certificate files (cert.pem, chain.pem, fullchain.pem, and privkey.pem) are generated in an individual folder for each domain in /etc/letsencrypt/live/ (e.g. /etc/letsencrypt/live/_______.com/ )
+•	cert.pem: server certificate only.
+•	chain.pem: root and intermediate certificates only.
+•	fullchain.pem: combination of server, root and intermediate certificates (replaces cert.pem and chain.pem).
+•	privkey.pem: private key (do not share this with anyone!).
+Take a note of your expiration date and other important information displayed on the confirmation screen.
+2. Remove the now-empty “secret file” directory, if desired (for cleanliness)
+$ rmdir /var/www/______/.well-known
+
+
+
+
 Install the Pre-requisites against the environment
+
+
+
 
 $cd tw_assignment
 $ chmod +x 
