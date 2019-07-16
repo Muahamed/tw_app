@@ -9,7 +9,14 @@ pn=muzzu_tweak
 if [ ! -x "$(which docker)" ]; then
      
     echo Check/Installing docker
-    [ ! -x "$(which docker)" ] && yum install -y docker && service docker start
+    
+     [ ! -x "$(which docker)" ] && yum install -y docker && service docker start
+   
+    echo "Check/Installing certbot ssl certificate"
+     
+    [ ! -x "$(which docker)" ] && yum install python27-devel -y && git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
+ && /opt/letsencrypt/letsencrypt-auto --debug && echo "rsa-key-size = 4096" >> /etc/letsencrypt/config.ini && echo "email = tajswas@gmail.com" >> /etc/letsencrypt/config.ini && /opt/letsencrypt/letsencrypt-auto certonly --debug --webroot -w /var/www/_us-east-2.compute.amazonaws.com -d us-east-2.compute.amazonaws.com  --config /etc/letsencrypt/config.ini --agree-tos 
+    
 
         
     # Now lets get docker compose
